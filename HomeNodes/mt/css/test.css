@@ -1,0 +1,53 @@
+body {
+    overflow: hidden;
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #666;
+  }
+
+  h2 {
+    padding-left: 0px;
+    font-weight: normal;
+    font-size: 28px;
+    color: #00AEFF;
+  }
+
+  .ledBtns {
+    padding: 50px;
+    font-size: 50px;
+    width: 180px;
+    color: #00AEFF;
+    border-style: solid;
+    border-color: #0000ff;
+  }
+
+  #state {
+    color: #00AEFF;
+    font-size: 22px;
+    margin-bottom: 0;
+  }
+
+  .container {
+    background-color: #f7f7f7;
+    padding: 0 10px 20px 10px;
+    border: 1px dotted #CCC;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .spacer {
+    margin-left: 5px;
+  }
+
+  #schematic {
+    position: absolute;
+    display: none;
+    top: 65px;
+    left: 15px;
+  }
+
+  #schematicBtn {
+    margin-top: 20px;
+  }

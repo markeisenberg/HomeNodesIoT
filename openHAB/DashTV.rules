@@ -1,0 +1,31 @@
+rule "Dash button pressed"
+    when
+        Channel "amazondashbutton:dashbutton:50-f5-da-d0-14-1e:press" triggered
+    then
+        println("The Dash button TV has been pressed")
+	publish("hivemq", "World", "TV")
+end
+
+rule "Dash Radio button pressed"
+    when
+        Channel "amazondashbutton:dashbutton:9bc00e0d:press" triggered
+    then
+        println("The Dash button Radio has been pressed")
+	publish("hivemq", "World", "Radio")
+end
+
+rule "Dash Lamp button pressed"
+    when
+        Channel "amazondashbutton:dashbutton:ac-63-be-a3-3f-7c:press" triggered
+    then
+        println("The Dash button Lamp has been pressed")
+	publish("hivemq", "World", "Lamp")
+end
+
+rule "Dash Speaker button pressed"
+    when
+        Channel "amazondashbutton:dashbutton:6bbcf706:press" triggered
+    then
+        println("The Dash button Speaker has been pressed")
+	publish("hivemq", "World", "Speaker")
+end

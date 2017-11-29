@@ -1,0 +1,5 @@
+node node_server_forever.js
+
+
+HIVE MQ (or other client) needed for MQTT 
+Breakout need for Arduino communication

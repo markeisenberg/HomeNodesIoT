@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/test.css">
+
+    <title>Hello World Example</title>
+
+    <!-- The following (socket.io.js) is only required when using the node_server -->
+    <script src="js/Breakout.min.js"></script>
+    <script src="js/fastclick.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/test.js">
+
+
+    </script>
+
+    <script type="text/javascript" src="js/jq.js"></script>
+    <script type="text/javascript" src="js/sb-1.4.1.js"></script>
+
+    <script type="text/javascript">
+        // when window loads call the setup method
+        $(window).on("load", setup);
+
+        // Spacebrew Object
+        var sb, app_name = "Switch Wall";
+
+        /* setup Function that connect to spacebrew and creates a listener for clicks of the submit button.
+         */
+        function setup() {
+            var random_id = "0000" + Math.floor(Math.random() * 10000);
+
+            app_name = app_name + ' ' + random_id.substring(random_id.length - 4);
+
+            // setup spacebrew
+            sb = new Spacebrew.Client(); // create spacebrew client object
+
+            sb.name(app_name);
+            sb.description("This app sends text from an HTML form."); // set the app description
+
+            // create the spacebrew subscription channels
+            sb.addPublish("text", "string", ""); // create the publication feed
+            sb.addSubscribe("text", "string"); // create the subscription feed
+
+            // configure the publication and subscription feeds
+            sb.onStringMessage = onStringMessage;
+            sb.onOpen = onOpen;
+
+            // connect to spacbrew
+            sb.connect();
+
+            // listen to button clicks
+            //$("#button").on("mousedown", onMouseDown);
+        }
+
+        /**
+         * Function that is called when Spacebrew connection is established
+         */
+        function onOpen() {
+            var message = "Connected as <strong>" + sb.name() + "</strong>. ";
+            if (sb.name() === app_name) {
+                message += "<br>You can customize this app's name in the query string by adding <strong>name=your_app_name</strong>."
+            }
+            $("#name").html(message);
+        }
+
+
+        /**
+         * onStringMessage Function that is called whenever new spacebrew string messages are received.
+         *          It accepts two parameters:
+         * @param  {String} name    Holds name of the subscription feed channel
+         * @param  {String} value 	Holds value received from the subscription feed
+         */
+        function onStringMessage(name, value) {
+            console.log("[onBooleanMessage] boolean message received ", value);
+            $("#msg_received").text(value); // display the sent message in the browser  
+            if (value == "OnA") {
+                //console.log("Im am speaker");
+                    document.getElementById('btnRightA').click();
+            }
+            if (value == "OffA") {
+                //console.log("Im am tv");
+                    document.getElementById('btnLeftA').click();
+            }
+            if (value == "OnB") {
+                //console.log("Im am speaker");
+                    document.getElementById('btnRightB').click();
+            }
+            if (value == "OffB") {
+                //console.log("Im am tv");
+                    document.getElementById('btnLeftB').click();
+            }
+            if (value == "OnC") {
+                //console.log("Im am speaker");
+                    document.getElementById('btnRightC').click();
+            }
+            if (value == "OffC") {
+                //console.log("Im am tv");
+                    document.getElementById('btnLeftC').click();
+            }
+            if (value == "OnD") {
+                //console.log("Im am speaker");
+                    document.getElementById('btnRightD').click();
+            }
+            if (value == "OffD") {
+                //console.log("Im am tv");
+                    document.getElementById('btnLeftD').click();
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <p>
+            <strong>Output:</strong> Use the buttons below to turn the LED on the breadboard on or off.</p>
+        <button id="btnLeftA" class="ledBtns" type="button">LED A Off</button>
+        <span class="spacer"></span>
+        <button id="btnRightA" class="ledBtns" type="button">LED  A On</button>
+
+
+        <button id="btnLeftB" class="ledBtns" type="button">LED B Off</button>
+        <span class="spacer"></span>
+        <button id="btnRightB" class="ledBtns" type="button">LED  B On</button>
+
+
+        <button id="btnLeftC" class="ledBtns" type="button">LED C Off</button>
+        <span class="spacer"></span>
+        <button id="btnRightC" class="ledBtns" type="button">LED  C On</button>
+
+
+        <button id="btnLeftD" class="ledBtns" type="button">LED D Off</button>
+        <span class="spacer"></span>
+        <button id="btnRightD" class="ledBtns" type="button">LED  D On</button>
+    </div>
+    
+   <div style="top: 0px; left: 0px; background-color: black; position: fixed; width: 100%; height: 100%"></div>
+</body>
+
+</html>

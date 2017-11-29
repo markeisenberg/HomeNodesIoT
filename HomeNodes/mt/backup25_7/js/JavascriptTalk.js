@@ -1,0 +1,1 @@
+$(window).on('storage', message_receive);

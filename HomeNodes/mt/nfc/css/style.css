@@ -1,0 +1,164 @@
+html,
+body {
+    overflow: hidden;
+    margin: 0px;
+    background-color: black;
+}
+
+connection {
+    border: 12px solid #b51c29;
+    border-radius: 31px;
+}
+
+/* CONNECTIONS */
+
+#lampRadio {
+    stroke: #1400ff;
+    display: none;
+    stroke-width: 80;
+}
+
+#radioTV {
+    stroke: #ff4cf1;
+    display: none;
+    stroke-width: 80;
+}
+
+#radioSpeaker {
+    stroke: #08d900;
+    display: none;
+    stroke-width: 80;
+}
+
+#speakerTV {
+    stroke: #ff0000;
+    display: none;
+    stroke-width: 80;
+}
+
+#tvLamp {
+    stroke: #ffb100;
+    display: none;
+    stroke-width: 80;
+}
+
+#speakerLamp {
+    stroke: #fff500;
+    display: none;
+    stroke-width: 80;
+}
+#externalSpeaker {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 40;
+}
+#externalTV {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 40;
+}
+#externalLamp {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 40;
+}
+#externalRadio {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 40;
+}
+
+
+/* NODES */
+
+#speakerNode {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 610px;
+    left: 450px;
+    background-color: #d4d4d4;
+    border-radius: 50%;
+}
+
+#tvNode {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 80px;
+    left: 900px;
+    background-color: #d4d4d4;
+    border-radius: 50%;
+}
+
+#lampNode {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 250px;
+    left: 1580px;
+    background-color: #d4d4d4;
+    border-radius: 50%;
+}
+
+#radioNode {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 600px;
+    left: 1580px;
+    background-color: #d4d4d4;
+    border-radius: 50%;
+}
+
+#bin {
+    position: fixed;
+    width: 200px;
+    top: 70px;
+    left: 100px;
+    display: block;
+}
+
+#externalNode {
+    position:fixed;
+    float:left;
+    top:400px;
+    left:-100px;
+    width:320px;
+    height:220px;
+    overflow:hidden;
+    display: block;
+    background-color: gray;
+    font-size: 6em;
+}
+
+#leftArrow {
+    height: 100%;
+
+    width: 25%;
+    background-color: gray;
+}
+#status{
+    position: fixed;
+    color: white;
+    right: 0;
+}
+
+#rightArrow {
+    height: 100%;
+
+    width: 25%;
+    background-color: gray;
+}
+
+#onoff {
+    position:fixed;
+    color: white;
+    clear: left;
+    height: 80px;
+    font-size: 0.6em;
+    top: 620px;
+    width: 320px;
+    text-align: center;
+    background-color: red;
+}

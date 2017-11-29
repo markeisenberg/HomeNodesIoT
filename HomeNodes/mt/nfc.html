@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/divconnect.js"></script>
+
+    <script src="js/Breakout.min.js"></script>
+    <!--<script src="js/fastclick.min.js"></script> -->
+    <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jq.js"></script>
+    <!-- <script src="js/ubidisplays-multitouch-0.8.js" type="text/javascript"></script> -->
+    <!--<script src="js/protobject.js" type="text/javascript"></script>-->
+
+
+    <script type="text/javascript" src="js/sb-1.4.1.js"></script>
+
+    <script type="text/javascript" src="js/BNCConnector-compr.js"></script>
+
+    <meta charset="utf-8">
+    <title>Connection Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
+
+
+    <script type="text/javascript">
+        // when window loads call the setup method
+        $(window).on("load", setup);
+
+        // Spacebrew Object
+        var sb, app_name = "NFC Wall";
+        var washOn = false;
+        var dishOn = false;
+        var lampOn = false;
+        var speakerOn = false;
+        var tvOn = false;
+        var radioOn = false;
+        var externalOn = false;
+
+        /* setup Function that connect to spacebrew and creates a listener for clicks of the submit button.
+         */
+        function setup() {
+            var random_id = "0000" + Math.floor(Math.random() * 10000);
+
+            app_name = app_name + ' ' + random_id.substring(random_id.length - 4);
+
+            // setup spacebrew
+            sb = new Spacebrew.Client(); // create spacebrew client object
+
+            sb.name(app_name);
+            sb.description("This app sends text from an HTML form."); // set the app description
+
+            // create the spacebrew subscription channels
+            sb.addPublish("text", "string", ""); // create the publication feed
+            sb.addSubscribe("text", "string"); // create the subscription feed
+
+            // configure the publication and subscription feeds
+            sb.onStringMessage = onStringMessage;
+            sb.onOpen = onOpen;
+
+            // connect to spacbrew
+            sb.connect();
+
+            // listen to button clicks
+            $("#btnLeftA").on("click", turnAOff);
+            $("#btnRightA").on("click", turnAOn);
+
+            $("#btnLeftB").on("click", turnBOff);
+            $("#btnRightB").on("click", turnBOn);
+
+            $("#btnLeftC").on("click", turnCOff);
+            $("#btnRightC").on("click", turnCOn);
+
+            $("#btnLeftD").on("click", turnDOff);
+            $("#btnRightD").on("click", turnDOn);
+        }
+
+        /**
+         * Function that is called when Spacebrew connection is established
+         */
+        function onOpen() {
+            var message = "Connected as <strong>" + sb.name() + "</strong>. ";
+            if (sb.name() === app_name) {
+                message += "<br>You can customize this app's name in the query string by adding <strong>name=your_app_name</strong>."
+            }
+            $("#name").html(message);
+        }
+
+        function turnAOn(evt) {
+            var newString = "OnA"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser  
+            connectedAOn();
+        }
+
+        function turnAOff(evt) {
+            var newString = "OffA"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser 
+            connectedAOff();
+        }
+
+        function turnBOn(evt) {
+            var newString = "OnB"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser  
+            connectedBOn();
+        }
+
+        function turnBOff(evt) {
+            var newString = "OffB"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser 
+            connectedBOff();
+        }
+
+        function turnCOn(evt) {
+            var newString = "OnC"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser  
+            connectedCOn();
+        }
+
+        function turnCOff(evt) {
+            var newString = "OffC"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser 
+            connectedCOff();
+        }
+
+        function turnDOn(evt) {
+            var newString = "OnD"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser  
+            connectedDOn();
+        }
+
+        function turnDOff(evt) {
+            var newString = "OffD"; // load text from input bo            // if input box is not blank
+            console.log("Sending message " + newString);
+            sb.send("text", "string", newString); // send string to spacebrew
+            $("#string").val(""); // clear the text box
+            $("#status").text(newString); // display the sent message in the browser 
+            connectedDOff();
+        }
+
+        /**
+         * onStringMessage Function that is called whenever new spacebrew string messages are received.
+         *          It accepts two parameters:
+         * @param  {String} name    Holds name of the subscription feed channel
+         * @param  {String} value 	Holds value received from the subscription feed
+         */
+        function onStringMessage(name, value) {
+            console.log("[onBooleanMessage] boolean message received ", value);
+            $("#msg_received").text(value); // display the sent message in the browser  
+            if (value == "speaker") {
+                //console.log("Im am speaker");
+                connectSpeaker();
+            }
+            if (value == "tv") {
+                //console.log("Im am tv");
+                connectTV();
+            }
+            if (value == "radio") {
+                //console.log("Im am radio");
+                connectRadio();
+            }
+            if (value == "lamp") {
+                //console.log("Im am lamp");
+                connectLamp();
+            }
+
+            //dash button inputs
+            if (value == "sswitch") {
+                speakerOn = !speakerOn;
+                if (speakerOn == true){
+                    turnAOn();
+                }
+                if (speakerOn == false){
+                    turnAOff();
+                }
+            }
+        
+            if (value == "tswitch") {
+               tvOn = !tvOn;
+                if (tvOn == true){
+                    turnBOn();
+                }
+                if (tvOn == false){
+                    turnBOff();
+                }
+            }
+            if (value == "lswitch") {
+                lampOn = !lampOn;
+                if (lampOn == true){
+                    turnCOn();
+                }
+                if (lampOn == false){
+                    turnCOff();
+                }
+            }
+            if (value == "rswitch") {
+                radioOn = !radioOn;
+                if (radioOn == true){
+                    turnDOn();
+                }
+                if (radioOn == false){
+                    turnDOff();
+                }
+            }
+        }
+
+    </script>
+
+    <script>
+        //check of console exist
+        if (!window.console) {
+            window.console = {};
+            window.console.log = function() {};
+        }
+        var newValue;
+
+        function main() {
+
+            var connectorInstance;
+
+            //init connector  
+            //BNCConnectorMonitor.start();
+            //create messaging instance
+            connectorInstance = new BNCConnector("c2");
+
+            //function called for each incoming message
+            connectorInstance.listen = function(who, msg) {
+                console.log("My IP is: " + this.name + " and I have just received message from IP " + who +
+                    ". The message: " + msg);
+                //do something with the message
+                if (msg == "Wash") {
+                    washClick();
+                }
+                if (msg == "Dish") {
+                    dishClick();
+                }
+                if (msg == "Right") {
+                    goRight();
+                }
+                if (msg == "Left") {
+                    goLeft();
+                }
+                if (msg == "Switch") {
+                    switchExternal();
+                }
+                if (msg == "Bin") {
+                    deleteClicked();
+                }
+            };
+
+            //error handler - optional
+            connectorInstance.onerror = function(type, o) {
+                console.log("Error sending meessage to " + o[1] + " caused by " + type);
+            };
+
+            //onsent handler - optional
+            connectorInstance.onsent = function(o) {
+                console.log("Succesively sent to IP " + o[1] + " the message: " + o[0]);
+            };
+
+            var txta = document.getElementById("inp");
+
+            /// your messaging function
+            window.sendMessageToPeer = function(peerName) {
+                connectorInstance.sendData(peerName, newValue);
+
+            }
+            document.ondblclick = function() {
+                console.log(BNCConnectorMonitor.getAllPeers());
+            };
+
+        }
+
+    </script>
+
+</head>
+
+<body onload='main()'>
+    <!--<div id="speakerNode"></div>
+    <div id="tvNode"></div>
+    <div id="lampNode"></div>
+    <div id="radioNode"></div> -->
+    <!-- <script src="/chat.js"></script> -->
+
+    <div id="speakerNode" onclick="connectSpeaker()">Off</div>
+    <div id="tvNode" onclick="connectTV()">Off</div>
+    <div id="lampNode" onclick="connectLamp()">Off</div>
+    <div id="radioNode" onclick="connectRadio()">Off</div>
+    <div id="externalNode">
+        <img id="washingMachine" class="mySlides" src="images/wash.png" onclick="connectWash()">
+        <img id="dishWasher" class="mySlides" src="images/dish.png" onclick="connectDish()">
+
+        <button id="leftArrow" class="w3-button w3-display-left" onclick="goLeft()">L</button>
+        <button id="rightArrow" class="w3-button w3-display-right" onclick="goRight()">R</button>
+        <div id="onoff" onclick="switchExternal()">Off</div>
+    </div>
+
+    <button style="display: none;" id="btnLeftA" class="ledBtns" type="button">LED A Off</button>
+    <span class="spacer"></span>
+    <button style="display: none;" id="btnRightA" class="ledBtns" type="button">LED  A On</button>
+    
+    <button style="display: none;" id="btnLeftB" class="ledBtns" type="button">LED B Off</button>
+    <span class="spacer"></span>
+    <button style="display: none;" id="btnRightB" class="ledBtns" type="button">LED  B On</button>
+    
+    <button style="display: none;" id="btnLeftC" class="ledBtns" type="button">LED C Off</button>
+    <span class="spacer"></span>
+    <button style="display: none;" id="btnRightC" class="ledBtns" type="button">LED  C On</button>
+    
+    <button style="display: none;" id="btnLeftD" class="ledBtns" type="button">LED D Off</button>
+    <span class="spacer"></span>
+    <button style="display: none;" id="btnRightD" class="ledBtns" type="button">LED  D On</button>
+
+    <svg id="mySVG" width=100% height=1000px>
+        <line id="speakerTV" x1="110" y1="240" x2="300" y2="120"/> <!-- RED -->
+        <line id="lampRadio" x1="500" y1="140" x2="550" y2="320"/> <!-- BLUE -->
+        <line id="tvLamp" x1="300" y1="120" x2="500" y2="140"/> <!-- ORANGE -->
+        <line id="radioSpeaker" x1="110" y1="240" x2="550" y2="320"/> <!-- GREEN -->
+        <line id="radioTV" x1="300" y1="120" x2="550" y2="320"/> <!-- PINK -->
+        <line id="speakerLamp" x1="110" y1="240" x2="500" y2="140"/> <!-- YELLOW -->
+        
+        <line id="externalSpeakerW" x1="110"120 y1="240" x2="-100" y2="250"/> <!-- WASHING -->
+        <line id="externalTVW" x1="300" y1="120" x2="-100" y2="240"/>
+        <path id="externalLampW" d="M-80 280 Q 200 -100 500 150" stroke="white" fill="transparent"/>
+        <path id="externalRadioW" d="M-80 220 Q 110 450 565 330" stroke="white" fill="transparent"/>
+        
+        <line id="externalSpeakerD" x1="110"120 y1="240" x2="-100" y2="250"/> <!-- DISHES -->
+        <line id="externalTVD" x1="300" y1="120" x2="-100" y2="240"/>
+        <path id="externalLampD" d="M-80 280 Q 200 -100 500 150" stroke="white" fill="transparent"/>
+        <path id="externalRadioD" d="M-80 220 Q 110 450 565 330" stroke="white" fill="transparent"/>
+    </svg>
+
+    <img id="bin" src="images/binClosed.png" onclick="deleteClicked()" />
+
+</body>
+
+</html>

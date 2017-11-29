@@ -1,0 +1,200 @@
+html,
+body {
+    overflow: hidden;
+    margin: 0px;
+    background-color: black;
+}
+
+connection {
+    border: 12px solid #b51c29;
+    border-radius: 31px;
+}
+
+/* CONNECTIONS */
+
+#lampRadio {
+    stroke: #1400ff;
+    display: none;
+    stroke-width: 28;
+}
+
+#radioTV {
+    stroke: #ff4cf1;
+    display: none;
+    stroke-width: 28;
+}
+
+#radioSpeaker {
+    stroke: #08d900;
+    display: none;
+    stroke-width: 28;
+}
+
+#speakerTV {
+    stroke: #ff0000;
+    display: none;
+    stroke-width: 28;
+}
+
+#tvLamp {
+    stroke: #ffb100;
+    display: none;
+    stroke-width: 28;
+}
+
+#speakerLamp {
+    stroke: #fff500;
+    display: none;
+    stroke-width: 28;
+}
+
+
+
+#externalSpeakerD {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalTVD {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalLampD {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalRadioD {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+
+#externalSpeakerW {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalTVW {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalLampW {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+#externalRadioW {
+    stroke: #9b9b9b;
+    display: none;
+    stroke-width: 14;
+}
+
+
+/* NODES */
+
+#speakerNode {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    top: 210px;
+    left: 65px;
+    line-height: 4;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ff3636;
+    border-radius: 50%;
+}
+
+#tvNode {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    top: 80px;
+    left: 260px;
+    line-height: 4;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ff3636;
+    border-radius: 50%;
+}
+
+#lampNode {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    top: 100px;
+    left: 460px;
+    line-height: 4;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ff3636;
+    border-radius: 50%;
+}
+
+#radioNode {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    top: 280px;
+    left: 510px;
+    line-height: 4;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ff3636;
+    border-radius: 50%;
+}
+
+#bin {
+    position: fixed;
+    width: 120px;
+    top: 30px;
+    left: -200px;
+    display: block;
+}
+
+#externalNode {
+    position:fixed;
+    float:left;
+    top:360px;
+    left:-320px;
+    width:320px;
+    height:220px;
+    overflow:hidden;
+    display: block;
+    background-color: gray;
+    font-size: 6em;
+}
+
+#leftArrow {
+    height: 100%;
+    top:0px;
+    width: 25%;
+    background-color: gray;
+}
+#status{
+    position: fixed;
+    color: white;
+    right: 0;
+}
+
+#rightArrow {
+    height: 100%;
+    top:0px;
+    width: 25%;
+    background-color: gray;
+}
+
+#onoff {
+    position:fixed;
+    color: white;
+    clear: left;
+    height: 80px;
+    font-size: 0.6em;
+    top: 580px;
+    width: 320px;
+    text-align: center;
+    background-color: red;
+}
